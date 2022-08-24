@@ -37,6 +37,7 @@ def is_token_expired(token):
 def token_expire_handler(token):
     is_expired = is_token_expired(token)
     if is_expired:
+        user=token.user
         token.delete()
-        token = Token.objects.create(user=token.user)
+        token = Token.objects.create(user=user)
     return is_expired, token
